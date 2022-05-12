@@ -120,6 +120,7 @@ MonoBehaviour:
   syncInterval: 0.1
   agent: {fileID: 8865490158693711124}
   targeter: {fileID: 6298733265589249474}
+  chaseDistance: 9.9
 --- !u!114 &4468953338596125291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  target: {fileID: 0}
 --- !u!195 &8865490158693711124
 NavMeshAgent:
   m_ObjectHideFlags: 0
