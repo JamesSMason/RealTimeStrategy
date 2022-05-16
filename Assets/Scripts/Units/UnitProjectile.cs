@@ -25,17 +25,12 @@ public class UnitProjectile : NetworkBehaviour
     {
         if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
         {
-            if (networkIdentity.connectionToClient == connectionToClient)
-            {
-                Debug.Log("Hit object is ours"); return; }
+            if (networkIdentity.connectionToClient == connectionToClient) { return; }
         }
-
-        Debug.Log("Hit object is enemy");
 
         if (networkIdentity.TryGetComponent<Health>(out Health health))
         {
             health.DealDamage(damageToDeal);
-            Debug.Log("Hit object has health");
         }
 
         DestroySelf();
