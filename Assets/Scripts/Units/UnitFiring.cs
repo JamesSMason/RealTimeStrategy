@@ -17,7 +17,7 @@ public class UnitFiring : NetworkBehaviour
     {
         Targetable target = targeter.GetTarget();
 
-        if (targeter.GetTarget() == null) {  return; }
+        if (target == null) {  return; }
 
         if (!CanFireAtTarget(target)) { return; }
 
@@ -39,6 +39,6 @@ public class UnitFiring : NetworkBehaviour
     [Server]
     private bool CanFireAtTarget(Targetable target)
     {
-        return (target.transform.position - transform.position).sqrMagnitude < fireRange * fireRange;
+        return (target.transform.position - transform.position).sqrMagnitude <= fireRange * fireRange;
     }
 }
