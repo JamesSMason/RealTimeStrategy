@@ -5,6 +5,16 @@ public class Targeter : NetworkBehaviour
 {
     private Targetable target = null;
 
+    public override void OnStartServer()
+    {
+        GameOverHandler.ServerOnGameOver += ServerHandleGameOver;
+    }
+
+    public override void OnStopServer()
+    {
+        GameOverHandler.ServerOnGameOver -= ServerHandleGameOver;
+    }
+
     public Targetable GetTarget()
     {
         return target;
@@ -21,5 +31,11 @@ public class Targeter : NetworkBehaviour
     public void ClearTarget()
     {
         target = null;
+    }
+
+    [Server]
+    public void ServerHandleGameOver()
+    {
+        ClearTarget();
     }
 }
