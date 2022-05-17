@@ -8,7 +8,7 @@ public class Health : NetworkBehaviour
 
     [SyncVar(hook = nameof(HandleHealthUpdated))] private int currentHealth;
 
-    public event Action ServerOnDie;
+    public event Action ServerOnDeath;
 
     public event Action<int, int> ClientOnHealthUpdated;
 
@@ -28,9 +28,7 @@ public class Health : NetworkBehaviour
 
         if (currentHealth != 0) { return; }
 
-        ServerOnDie?.Invoke();
-
-        Debug.Log("Unit died");
+        ServerOnDeath?.Invoke();
     }
 
     #endregion

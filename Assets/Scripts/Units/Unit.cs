@@ -31,7 +31,7 @@ public class Unit : NetworkBehaviour
 
     public override void OnStartServer()
     {
-        health.ServerOnDie += ServerHandleDeath;
+        health.ServerOnDeath += ServerHandleDeath;
 
         ServerOnUnitSpawned?.Invoke(this);
 
@@ -43,13 +43,13 @@ public class Unit : NetworkBehaviour
 
     public override void OnStopServer()
     {
-        health.ServerOnDie -= ServerHandleDeath;
+        health.ServerOnDeath -= ServerHandleDeath;
         ServerOnUnitDespawned?.Invoke(this);
     }
 
     private void ServerHandleDeath()
     {
-        NetworkServer.Destroy(this.gameObject);
+        NetworkServer.Destroy(gameObject);
     }
 
     #endregion

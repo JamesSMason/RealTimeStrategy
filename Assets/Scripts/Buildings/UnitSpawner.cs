@@ -12,12 +12,12 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 
     public override void OnStartServer()
     {
-        health.ServerOnDie += ServerHandleDeath;
+        health.ServerOnDeath += ServerHandleDeath;
     }
 
     public override void OnStopServer()
     {
-        health.ServerOnDie -= ServerHandleDeath;
+        health.ServerOnDeath -= ServerHandleDeath;
     }
 
     [Command]
@@ -30,7 +30,7 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 
     private void ServerHandleDeath()
     {
-        NetworkServer.Destroy(this.gameObject);
+        //NetworkServer.Destroy(gameObject);
     }
 
     #endregion
