@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3592110363777813996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 8865490158693711124}
   - component: {fileID: 2947429674338405414}
   - component: {fileID: 8836616761288600091}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2885379820491530147}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AimAtPoint
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -345,7 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6116748209263794842}
   - component: {fileID: 4142088326792435183}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UnitSelectedSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,6 +472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tank with lazer cannon
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e4c073f4da1a9e048ab381d1f184e184, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4c073f4da1a9e048ab381d1f184e184, type: 3}
 --- !u!4 &1386330907543916549 stripped
@@ -491,8 +495,16 @@ PrefabInstance:
       value: HealthBarCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 345433468122790159, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 345433468122790159, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233650812202627653, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2676097297529892977, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
       propertyPath: m_RootOrder
@@ -537,6 +549,14 @@ PrefabInstance:
     - target: {fileID: 2676097297529892977, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099659752432271562, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881175908240463033, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8180826344319127687, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
       propertyPath: m_FillAmount

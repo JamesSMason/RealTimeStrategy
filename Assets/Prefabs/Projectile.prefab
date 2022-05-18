@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2550874691465681952}
   - component: {fileID: 8188871927188968856}
   - component: {fileID: -577792302088707378}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 2444570175763413719}
   - component: {fileID: 6757772988229182991}
   - component: {fileID: 4888205732903492952}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 9054493770081621994}
   - component: {fileID: 8372867935056164971}
   - component: {fileID: 3594601587785468488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
