@@ -1,4 +1,5 @@
 using Mirror;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,10 @@ public class RTSPlayer : NetworkBehaviour
     [SerializeField] private List<Unit> myUnits = new List<Unit>();
     [SerializeField] private List<Building> myBuildings = new List<Building>();
 
+    [SyncVar(hook = nameof(ClientHandleResourcesUpdated))] private int resources = 500;
+
+    public event Action<int> ClientOnResourcesUpdated;
+
     public List<Unit> GetMyUnits()
     {
         return myUnits;
@@ -16,6 +21,11 @@ public class RTSPlayer : NetworkBehaviour
     public List<Building> GetMyBuildings()
     {
         return myBuildings;
+    }
+
+    public int GetResources()
+    {
+        return resources;
     }
 
     #region Server
@@ -54,6 +64,14 @@ public class RTSPlayer : NetworkBehaviour
 
         GameObject buildingInstance = Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);
         NetworkServer.Spawn(buildingInstance, connectionToClient);
+
+        Debug.Log($"Placing {buildingInstance.name}");
+    }
+
+    [Server]
+    public void SetResources(int resources)
+    {
+        this.resources = resources;
     }
 
     private void ServerHandleUnitSpawned(Unit unit)
@@ -101,6 +119,11 @@ public class RTSPlayer : NetworkBehaviour
     public override void OnStopClient()
     {
         if (!isClientOnly || !hasAuthority) { return; }
+    }
+
+    public void ClientHandleResourcesUpdated(int oldResources, int newResources)
+    {
+        ClientOnResourcesUpdated?.Invoke(newResources);
     }
 
     private void AuthorityHandleUnitSpawned(Unit unit)
