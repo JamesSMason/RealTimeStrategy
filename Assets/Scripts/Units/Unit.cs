@@ -8,6 +8,7 @@ public class Unit : NetworkBehaviour
     [SerializeField] private Health health = null;
     [SerializeField] private UnitMovement unitMovement = null;
     [SerializeField] private Targeter targeter = null;
+    [SerializeField] private int resourceCost = 50;
     [SerializeField] private UnityEvent onSelected;
     [SerializeField] private UnityEvent onDeselected;
 
@@ -25,6 +26,11 @@ public class Unit : NetworkBehaviour
     public Targeter GetTargeter()
     {
         return targeter;
+    }
+
+    public int GetResourceCost()
+    {
+        return resourceCost;
     }
 
     #region Server
