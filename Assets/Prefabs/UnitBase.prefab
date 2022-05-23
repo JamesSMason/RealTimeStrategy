@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 51884266525800126, guid: eab82248306c198469d15260a8b78c39, type: 3}
+      propertyPath: colorRenderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 51884266525800126, guid: eab82248306c198469d15260a8b78c39, type: 3}
+      propertyPath: colorRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 2319129252617550121}
     - target: {fileID: 2668074802930061347, guid: eab82248306c198469d15260a8b78c39, type: 3}
       propertyPath: m_Name
       value: UnitBase
@@ -205,5 +213,10 @@ PrefabInstance:
 --- !u!1 &1170070207959695326 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6890782773338406235, guid: 4b05e8e139df99245b00c25ba7e32854, type: 3}
+  m_PrefabInstance: {fileID: 5736485089827816069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2319129252617550121 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8048817706956192684, guid: 4b05e8e139df99245b00c25ba7e32854, type: 3}
   m_PrefabInstance: {fileID: 5736485089827816069}
   m_PrefabAsset: {fileID: 0}

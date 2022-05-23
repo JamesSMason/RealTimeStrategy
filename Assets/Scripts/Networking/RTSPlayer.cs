@@ -6,12 +6,14 @@ using UnityEngine;
 public class RTSPlayer : NetworkBehaviour
 {
     [SerializeField] private Building[] buildings = new Building[0];
-    [SerializeField] private List<Unit> myUnits = new List<Unit>();
-    [SerializeField] private List<Building> myBuildings = new List<Building>();
     [SerializeField] private float buildingRangeLimit = 5f;
     [SerializeField] private LayerMask buildingBlockLayer = new LayerMask();
 
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))] private int resources = 500;
+
+    private Color teamColour = new Color();
+    private List<Unit> myUnits = new List<Unit>();
+    private List<Building> myBuildings = new List<Building>();
 
     public event Action<int> ClientOnResourcesUpdated;
 
@@ -28,6 +30,11 @@ public class RTSPlayer : NetworkBehaviour
     public int GetResources()
     {
         return resources;
+    }
+
+    public Color GetTeamColor()
+    {
+        return teamColour;
     }
 
     public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 point)
@@ -69,6 +76,18 @@ public class RTSPlayer : NetworkBehaviour
         Building.ServerOnBuildingDespawned -= ServerHandleBuildingDespawned;
     }
 
+    [Server]
+    public void SetTeamColour(Color newTeamColour)
+    {
+        teamColour = newTeamColour;
+    }
+
+    [Server]
+    public void SetResources(int resources)
+    {
+        this.resources = resources;
+    }
+
     [Command]
     public void CmdTryPlaceBuilding(int buildingId, Vector3 point)
     {
@@ -95,12 +114,6 @@ public class RTSPlayer : NetworkBehaviour
         NetworkServer.Spawn(buildingInstance, connectionToClient);
 
         SetResources(GetResources() - buildingToPlace.GetPrice());
-    }
-
-    [Server]
-    public void SetResources(int resources)
-    {
-        this.resources = resources;
     }
 
     private void ServerHandleUnitSpawned(Unit unit)

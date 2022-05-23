@@ -37,6 +37,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 51884266525800126, guid: eab82248306c198469d15260a8b78c39, type: 3}
+      propertyPath: colorRenderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 51884266525800126, guid: eab82248306c198469d15260a8b78c39, type: 3}
+      propertyPath: colorRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 3497391137743330338}
     - target: {fileID: 2668074802930061347, guid: eab82248306c198469d15260a8b78c39, type: 3}
       propertyPath: m_Name
       value: ResourceGenerator
@@ -247,7 +255,7 @@ PrefabInstance:
     - target: {fileID: 5581718334254279783, guid: df83905595246f04da8e161bf88c7374, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c28d73dbe68bc2043a7f7dad2d4551ba, type: 2}
+      objectReference: {fileID: 2100000, guid: b4afaeabd7651eb4c890023e65bd9be9, type: 2}
     - target: {fileID: 9035874669597223568, guid: df83905595246f04da8e161bf88c7374, type: 3}
       propertyPath: m_Name
       value: UnitGeneratorPreview
@@ -257,5 +265,10 @@ PrefabInstance:
 --- !u!1 &43599856048167637 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9035874669597223568, guid: df83905595246f04da8e161bf88c7374, type: 3}
+  m_PrefabInstance: {fileID: 9078981926853324869}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3497391137743330338 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5581718334254279783, guid: df83905595246f04da8e161bf88c7374, type: 3}
   m_PrefabInstance: {fileID: 9078981926853324869}
   m_PrefabAsset: {fileID: 0}
