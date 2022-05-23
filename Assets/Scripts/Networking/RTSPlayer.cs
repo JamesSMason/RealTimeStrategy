@@ -8,6 +8,8 @@ public class RTSPlayer : NetworkBehaviour
     [SerializeField] private Building[] buildings = new Building[0];
     [SerializeField] private List<Unit> myUnits = new List<Unit>();
     [SerializeField] private List<Building> myBuildings = new List<Building>();
+    [SerializeField] private float buildingRangeLimit = 5f;
+    [SerializeField] private LayerMask buildingBlockLayer = new LayerMask();
 
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))] private int resources = 500;
 
@@ -26,6 +28,27 @@ public class RTSPlayer : NetworkBehaviour
     public int GetResources()
     {
         return resources;
+    }
+
+    public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 point)
+    {
+        if (Physics.CheckBox(point + buildingCollider.center,
+                                buildingCollider.size / 2,
+                                Quaternion.identity,
+                                buildingBlockLayer))
+        {
+            return false;
+        }
+
+        foreach (Building building in myBuildings)
+        {
+            if ((point - building.transform.position).sqrMagnitude <= buildingRangeLimit * buildingRangeLimit)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     #region Server
@@ -60,12 +83,18 @@ public class RTSPlayer : NetworkBehaviour
             }
         }
 
+
         if (buildingToPlace == null) { return; }
+        if (resources < buildingToPlace.GetPrice()) { return; }
+
+        BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
+
+        if (!CanPlaceBuilding(buildingCollider, point)) { return; }
 
         GameObject buildingInstance = Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);
         NetworkServer.Spawn(buildingInstance, connectionToClient);
 
-        Debug.Log($"Placing {buildingInstance.name}");
+        SetResources(GetResources() - buildingToPlace.GetPrice());
     }
 
     [Server]
@@ -76,7 +105,7 @@ public class RTSPlayer : NetworkBehaviour
 
     private void ServerHandleUnitSpawned(Unit unit)
     {
-        if (unit.connectionToClient.connectionId != connectionToClient.connectionId) {  return; }
+        if (unit.connectionToClient.connectionId != connectionToClient.connectionId) { return; }
 
         myUnits.Add(unit);
     }
