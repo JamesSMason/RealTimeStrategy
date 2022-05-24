@@ -22,7 +22,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4188265560694602491
 Transform:
@@ -163,7 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  colorRenderers: []
+  colorRenderers:
+  - {fileID: 0}
 --- !u!1 &8018022402610870823
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8067564601664935995
 Transform:
@@ -204,6 +205,14 @@ PrefabInstance:
     - target: {fileID: 345433468122790159, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
       propertyPath: m_Name
       value: HealthBarCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 345433468122790159, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233650812202627653, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2676097297529892977, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
       propertyPath: m_RootOrder
@@ -248,6 +257,14 @@ PrefabInstance:
     - target: {fileID: 2676097297529892977, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099659752432271562, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881175908240463033, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d370115ed2d04b49976037a079475c5, type: 3}
