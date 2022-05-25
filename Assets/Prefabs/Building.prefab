@@ -165,6 +165,11 @@ MonoBehaviour:
   syncInterval: 0.1
   colorRenderers:
   - {fileID: 0}
+  materialPool:
+  - {fileID: 2100000, guid: 66a8a6e30880caa48908020cf5388217, type: 2}
+  - {fileID: 2100000, guid: 5146a78f90d41354b9e048f81986a8f3, type: 2}
+  - {fileID: 2100000, guid: 389b1eed39cf63c4fb8efea61e9976c5, type: 2}
+  - {fileID: 2100000, guid: 3b20901891546e04999f06509086c9bf, type: 2}
 --- !u!1 &8018022402610870823
 GameObject:
   m_ObjectHideFlags: 0

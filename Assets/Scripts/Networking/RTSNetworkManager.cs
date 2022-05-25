@@ -6,13 +6,14 @@ public class RTSNetworkManager : NetworkManager
 {
     [SerializeField] private GameObject unitSpawnerPrefab = null;
     [SerializeField] private GameOverHandler gameOverHandlerPrefab = null;
+    [SerializeField] private int numOfPlayerMaterials = 4;
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         base.OnServerAddPlayer(conn);
 
         RTSPlayer player = conn.identity.GetComponent<RTSPlayer>();
-        player.SetTeamColour(new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)));
+        player.SetTeamMaterialIndex(Random.Range(0, numOfPlayerMaterials));
 
         GameObject unitSpawnerInstance = Instantiate(unitSpawnerPrefab, conn.identity.transform.position, conn.identity.transform.rotation);
 
