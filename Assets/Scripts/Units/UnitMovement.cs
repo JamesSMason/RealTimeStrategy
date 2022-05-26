@@ -6,7 +6,10 @@ public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;
     [SerializeField] private Targeter targeter = null;
+    [SerializeField] private Animator myAnimator = null;
     [SerializeField] private float chaseDistance = 10f;
+
+    [SyncVar(hook = nameof(HandlePlayerWalking))] private bool isWalking = false;
 
     #region Server
     public override void OnStartServer()
@@ -23,21 +26,29 @@ public class UnitMovement : NetworkBehaviour
     private void Update()
     {
         Targetable target = targeter.GetTarget();
-
         if (target != null)
         {
             if ((target.transform.position - transform.position).sqrMagnitude > chaseDistance * chaseDistance)
             {
-                agent.SetDestination(target.transform.position);
+                bool hasCastToNavMesh = NavMesh.SamplePosition(target.transform.position, out NavMeshHit navMeshHit, 3f, NavMesh.AllAreas);
+                if (hasCastToNavMesh)
+                {
+                    if (!isWalking)
+                    {
+                        isWalking = true;
+                    }
+                    agent.SetDestination(navMeshHit.position);
+                }
             }
             else if (agent.hasPath)
             {
+                isWalking = false;
                 agent.ResetPath();
             }
         }
         if (!agent.hasPath) {  return; }
         if (agent.remainingDistance > agent.stoppingDistance) {  return; }
-
+        isWalking = false;
         agent.ResetPath();
     }
 
@@ -47,8 +58,12 @@ public class UnitMovement : NetworkBehaviour
     {
         targeter.ClearTarget();
 
-        if (!NavMesh.SamplePosition(position, out NavMeshHit hit, 1f, NavMesh.AllAreas)) { return; }
+        if (!NavMesh.SamplePosition(position, out NavMeshHit hit, 3f, NavMesh.AllAreas)) { return; }
 
+        if (!isWalking)
+        {
+            isWalking = true;
+        }
         agent.SetDestination(hit.position);
     }
 
@@ -67,6 +82,11 @@ public class UnitMovement : NetworkBehaviour
     #endregion
 
     #region Client
+
+    private void HandlePlayerWalking(bool oldValue, bool newValue)
+    {
+        myAnimator.SetBool("isWalking", newValue);
+    }
 
     #endregion
 }

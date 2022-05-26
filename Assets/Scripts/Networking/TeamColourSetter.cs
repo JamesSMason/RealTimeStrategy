@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class TeamColourSetter : NetworkBehaviour
 {
-    [SerializeField] private Renderer[] colorRenderers = new Renderer[0];
+    [SerializeField] private Renderer minimapColorRenderer = new Renderer();
+    [SerializeField] private Renderer[] teamMaterialRenderers = new Renderer[0];
     [SerializeField] private Material[] materialPool = new Material[0];
 
-    [SyncVar(hook = nameof(HandleTeamColourUpdated))] private int teamMaterialIndex;
+    [SyncVar(hook = nameof(HandleTeamColourUpdated))] private Color teamColour = new Color();
+    [SyncVar(hook = nameof(HandleTeamMaterialUpdated))] private int teamMaterialIndex;
 
     public int GetMaterialPoolSize()
     {
@@ -18,6 +20,8 @@ public class TeamColourSetter : NetworkBehaviour
     public override void OnStartServer()
     {
         RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
+
+        teamColour = player.GetTeamColour();
         teamMaterialIndex = player.GetTeamMaterialIndex();
     }
 
@@ -25,9 +29,14 @@ public class TeamColourSetter : NetworkBehaviour
 
     #region Client
 
-    private void HandleTeamColourUpdated(int oldTeamMaterialIndex, int newTeamMaterialIndex)
+    private void HandleTeamColourUpdated(Color oldColour, Color newColour)
     {
-        foreach (var renderer in colorRenderers)
+        minimapColorRenderer.material.SetColor("_BaseColor", newColour);
+    }
+
+    private void HandleTeamMaterialUpdated(int oldTeamMaterialIndex, int newTeamMaterialIndex)
+    {
+        foreach (var renderer in teamMaterialRenderers)
         {
             renderer.material = materialPool[newTeamMaterialIndex];
         }
