@@ -1,21 +1,23 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LobbyMenu : MonoBehaviour
 {
     [SerializeField] private GameObject lobbyUI = null;
+    [SerializeField] private Button startGameButton = null;
 
     private void OnEnable()
     {
         RTSNetworkManager.ClientOnConnected += HandleClientConnected;
+        RTSPlayer.AuthorityOnPartyOwnerStateUpdated += AuthorityHandlePartyOwnerStateUpdated;
     }
 
     private void OnDisable()
     {
         RTSNetworkManager.ClientOnConnected -= HandleClientConnected;
+        RTSPlayer.AuthorityOnPartyOwnerStateUpdated -= AuthorityHandlePartyOwnerStateUpdated;
     }
 
     private void HandleClientConnected()
@@ -35,5 +37,15 @@ public class LobbyMenu : MonoBehaviour
         }
 
         SceneManager.LoadScene(0);
+    }
+
+    public void StartGame()
+    {
+        NetworkClient.connection.identity.GetComponent<RTSPlayer>().CmdStartGame();
+    }
+
+    private void AuthorityHandlePartyOwnerStateUpdated(bool state)
+    {
+        startGameButton.gameObject.SetActive(state);
     }
 }
