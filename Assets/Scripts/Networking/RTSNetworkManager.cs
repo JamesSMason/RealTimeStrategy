@@ -54,10 +54,12 @@ public class RTSNetworkManager : NetworkManager
 
         Players.Add(player);
 
+        player.SetDisplayName($"Player {Players.Count}");
+
         player.SetTeamColor(new Color(UnityEngine.Random.Range(0f, 1f),
                                        UnityEngine.Random.Range(0f, 1f),
                                        UnityEngine.Random.Range(0f, 1f)));
-        player.SetTeamMaterialIndex(UnityEngine.Random.Range(0, numOfPlayerMaterials));
+        player.SetTeamMaterialIndex(Players.Count - 1);
 
         player.SetIsPartyOwner(Players.Count == 1);
     }
